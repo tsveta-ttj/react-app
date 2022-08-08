@@ -1,0 +1,163 @@
+/* Reset */
+
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  text-decoration: none;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* End of reset */
+
+:root {
+  --clr-yellow: #FCBA04;
+  --clr-rufous: #A50104;
+  --clr-rosewood: #590004;
+  --clr-dark-sienna: #250001;
+  --clr-light-grey: #F3F3F3;
+  --clr-white: #fff;
+  --clr-black: black;
+}
+
+
+html {
+  padding: 2rem;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--clr-light-grey);
+  box-sizing: border-box;
+}
+
+/* Card list */
+.cards{
+  height: 1600px;
+
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  gap: 15px;
+}
+
+/* Card component */
+
+.card{
+  background-color: #fff;
+  max-width: 350px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px black;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.img{
+  border-radius: 15px;
+
+  object-fit: cover;
+}
+
+.desc-section{
+  padding: 0 15px;
+}
+
+.title{
+  color: var(--clr-rufous);
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+}
+
+.desription {
+  text-align: justify;
+  font-size: 1.1rem;
+  color: var(--clr-dark-sienna);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.buttons{
+  margin: 15px 0;
+  border-top: 2px solid var(--clr-rufous);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.button{
+  color: var(--clr-rosewood);
+  font-weight: bold;
+  background-color: var(--clr-light-grey);
+  border: none;
+  padding:  10px;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Footer */

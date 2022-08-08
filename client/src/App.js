@@ -1,11 +1,19 @@
+import { Route, Routes } from 'react-router-dom';
+
 import './App.css';
+
+import { Header } from './components/common/header/Header';
 
 function App() {
   return (
-    
-    <main>
+    <>
 
-    </main>
+      <Header />
+      <main>
+
+      </main>
+     
+    </>
   );
 }
 

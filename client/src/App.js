@@ -1,21 +1,38 @@
 import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import './App.css';
+import * as cardService from './service/cardService.js';
 
 import { Header } from './components/common/header/Header';
 import { Footer } from './components/common/footer/Footer';
+import { Catalog } from './components/catalog/Catalog';
+import './App.css';
 
 function App() {
-  return (
-    <>
+    const [cards, setCard] = useState([]);
 
-      <Header />
-      <main>
+    useEffect(() => {
+        cardService.getAll()
+            .then(result => {
+                setCard(result)
+            });
+    }, []);
 
-      </main>
-     <Footer/>
-    </>
-  );
+    console.log('Cards:', cards);
+
+    return (
+        <>
+            <Header />
+
+            <main>
+                <Routes>
+                    <Route path="/catalog" element={<Catalog cards={cards} />} />
+                </Routes>
+            </main>
+
+            <Footer />
+        </>
+    );
 }
 
 export default App;

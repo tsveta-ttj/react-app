@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import * as cardService from './services/cardService.js';
@@ -15,19 +15,33 @@ import './App.css';
 import { Details } from './components/details/Details.js';
 
 function App() {
-    const [cards, setCard] = useState([]);
+    const navigate = useNavigate();
+
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
         cardService.getAll()
             .then(result => {
-                setCard(result)
+                setCards(result)
             });
     }, []);
 
     console.log('Cards:', cards);
 
+    const cardCreateHandler = (card) => {
+        console.log('Card in app', card);
 
-    
+        cardService.create(card)
+            .then((newItem) => {
+                setCards(oldCards => [...oldCards, newItem]);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        navigate('/catalog');
+    };
+
     return (
         <>
             <Header />
@@ -37,10 +51,10 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/catalog" element={<Catalog cards={cards} />} />
                     <Route path="/catalog/:cardId" element={<Details />} />
-                    
+
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/create" element={<CreateCard />} />
+                    <Route path="/create" element={<CreateCard onCardCreate={cardCreateHandler} />} />
                 </Routes>
             </main>
 

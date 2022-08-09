@@ -12,8 +12,26 @@ export const getAll = () => {
 export const getOne = (cardId) => {
     return fetch(`${baseUrl}/data/catalog/${cardId}`)
         .then(res => res.json())
-        // .then(result => console.log('result in service', result))
         .catch((error) => {
             console.error('Error:', error);
         });
-}
+};
+
+export const create = async (cardData) => {
+    const response = await fetch(`${baseUrl}/data/catalog`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cardData)
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        
+        return result;
+    } else {
+        throw { message: 'Unable to create card' };
+    }
+};
+

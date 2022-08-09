@@ -25,7 +25,7 @@ export const Details = () => {
 
             <div className="card-details">
                 <p>Blog title: <strong>{card.title}</strong></p>
-                <p>Description:<strong>{card.description}</strong></p>
+                <p>Description: <strong>{card.description}</strong></p>
             </div>
         </section>
     );

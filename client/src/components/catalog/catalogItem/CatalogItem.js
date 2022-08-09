@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 export const CatalogItem = ({
     card
 }) => {
@@ -10,10 +11,12 @@ export const CatalogItem = ({
                 </p>
             </section>
             <footer className="buttons">
-                <button className="button" type="button">Continue reading</button>
-                <button className="button" type="button">Edit</button>
-                <button className="button" type="button">Delete</button>
-            </footer>
-        </article>
+                <Link to={`/catalog/${card._id}`}>
+                    <button className="button" type="button">Continue reading</button>
+                </Link>
+            {/* <button className="button" type="button">Edit</button>
+                <button className="button" type="button">Delete</button> */}
+        </footer>
+        </article >
     );
-}
+} 

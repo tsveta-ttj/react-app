@@ -10,13 +10,15 @@ export const Logout = () => {
     
     useEffect(() => {
         userService.logout(user.accessToken)
-            .then(() => {
+            .then((result) => {
+                if (result.message) {
+                    throw new Error(result.message);
+                }
+
                 clearUserCredentials();
                 navigate('/');
             })
-            .catch(() => {
-                navigate('/');
-            });
+            .catch(err => console.log(err));
     });
 
 

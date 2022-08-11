@@ -9,3 +9,6 @@ export const create = (cardData) => request.post(baseUrl, cardData);
 
 export const edit = (gameId, gameData) => request.put(`${baseUrl}/${gameId}`, gameData);
 
+export const del = (gameId) => request.del(`${baseUrl}/${gameId}`);
+
+

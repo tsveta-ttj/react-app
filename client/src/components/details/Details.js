@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import * as cardService from '../../services/cardService';
+import { CardContext } from "../../contexts/CardContext";
 
 export const Details = () => {
+    const { deleteCard } = useContext(CardContext);
+
     const { cardId } = useParams();
+    const navigate = useNavigate();
 
     const [card, setCard] = useState({
         title: '',
@@ -24,6 +28,26 @@ export const Details = () => {
             .catch(err => console.log(err));
     }, [cardId]);
 
+    const onDelete = () => {
+        const choice = window.confirm('Are you sure you want to delete this post ?');
+
+        if (choice) {
+            cardService.del(cardId)
+                .then(res => {
+                    console.log('res from del', res);
+                    if (res === undefined) {
+                        
+                        deleteCard(cardId);
+                    } else {
+                        throw new Error(res.message);
+
+                    }
+                })
+                .catch(err => console.log(err));
+
+        }
+    }
+
     return (
         <section id="details">
             <h1>Details page</h1>
@@ -41,10 +65,10 @@ export const Details = () => {
                 <Link to={`/catalog/${cardId}/edit`} className="button">
                     Edit
                 </Link>
-                <Link to="#" className="button">
+                <button className="button" onClick={onDelete}>
                     Delete
-                </Link>
-                <Link to={'/catalog'} className="button">
+                </button>
+                <Link to={'/catalog'} className="button" >
                     Back
                 </Link>
             </div>

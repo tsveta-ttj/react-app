@@ -40,26 +40,34 @@ function App() {
         setAuth({});
     };
 
+
     const createCard = (newCard) => {
         setCards(oldCards => [...oldCards, newCard]);
         navigate('/catalog');
     };
 
-    const editCard = (gameId, gameData) => {
-        setCards(state => state.map(x => x._id === gameId ? gameData : x));
-    }
+    const editCard = (cardId, cardData) => {
+        setCards(state => state.map(x => x._id === cardId ? cardData : x));
+    };
+;
+    const deleteCard = (cardId) => {   
+        setCards(state => state.filter(x => x._id !== cardId))
+        navigate('/catalog');   
+    };
+
 
     return (
         <>
             <AuthContext.Provider value={{ user: auth, storeUserCredentials, clearUserCredentials }}>
                 <Header />
                 <main>
-                    <CardContext.Provider value={{ createCard, editCard }}>
+                    <CardContext.Provider value={{ createCard, editCard, deleteCard }}>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/catalog" element={<Catalog cards={cards} />} />
                             <Route path="/catalog/:cardId" element={<Details />} />
                             <Route path="/catalog/:cardId/edit" element={<EditCard />} />
+
                             <Route path="/create" element={<CreateCard />} />
 
                             <Route path="/logout" element={<Logout />} />

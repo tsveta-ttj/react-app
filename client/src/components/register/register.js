@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from '../../services/userService';
 
 export const Register = () => {
-    const {userRegister} = useContext(AuthContext);
+    const {storeUserCredentials} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onLogin = (e) => {
@@ -26,7 +26,7 @@ export const Register = () => {
                 if(authData.message){
                     throw new Error(authData.message);
                 }
-                userRegister(authData);
+                storeUserCredentials(authData);
                 navigate('/')
             })
             .catch(err => {

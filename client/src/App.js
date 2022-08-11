@@ -22,11 +22,11 @@ function App() {
 
     const navigate = useNavigate();
 
-    const userRegister = (authData) => {
+    const storeUserCredentials = (authData) => {
         setAuth(authData);
     };
 
-    const userLogout = () => {
+    const clearUserCredentials = () => {
         setAuth({});
     };
 
@@ -52,7 +52,7 @@ function App() {
 
     return (
         <>
-            <AuthContext.Provider value={{user:auth, userRegister, userLogout}}>
+            <AuthContext.Provider value={{user:auth, storeUserCredentials, clearUserCredentials}}>
                 <Header />
                 <main>
                     <Routes>

@@ -2,7 +2,9 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import * as cardService from './services/cardService.js';
+import { AuthContext } from './contexts/AuthContext.js';
 
+import './App.css';
 import { Header } from './components/common/header/Header';
 import { Footer } from './components/common/footer/Footer';
 import { Catalog } from './components/catalog/Catalog';
@@ -10,14 +12,18 @@ import { Home } from './components/home/Home';
 import { Login } from './components/login/Login.js';
 import { Register } from './components/register/register.js';
 import { CreateCard } from './components/createCard/CreateCard.js';
-
-import './App.css';
 import { Details } from './components/details/Details.js';
+import {useLocalStorage} from './hook/useLocalStorage'; 
 
 function App() {
+    const [cards, setCards] = useState([]);
+    const [auth, setAuth] = useLocalStorage('auth', {});
+
     const navigate = useNavigate();
 
-    const [cards, setCards] = useState([]);
+    const userRegister = (authData) =>{
+        setAuth(authData);
+    };
 
     useEffect(() => {
         cardService.getAll()
@@ -26,10 +32,7 @@ function App() {
             });
     }, []);
 
-    console.log('Cards:', cards);
-
     const cardCreateHandler = (card) => {
-        console.log('Card in app', card);
 
         cardService.create(card)
             .then((newItem) => {
@@ -44,19 +47,20 @@ function App() {
 
     return (
         <>
-            <Header />
+            <AuthContext.Provider value={{userRegister}}>
+                <Header />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/catalog" element={<Catalog cards={cards} />} />
+                        <Route path="/catalog/:cardId" element={<Details />} />
 
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/catalog" element={<Catalog cards={cards} />} />
-                    <Route path="/catalog/:cardId" element={<Details />} />
-
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/create" element={<CreateCard onCardCreate={cardCreateHandler} />} />
-                </Routes>
-            </main>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/create" element={<CreateCard onCardCreate={cardCreateHandler} />} />
+                    </Routes>
+                </main>
+            </AuthContext.Provider>
 
             <Footer />
         </>

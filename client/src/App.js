@@ -17,6 +17,7 @@ import { CreateCard } from './components/createCard/CreateCard.js';
 import { Details } from './components/details/Details.js';
 import { useLocalStorage } from './hook/useLocalStorage';
 import { Logout } from './components/logout/Logout.js';
+import { EditCard } from './components/editCard/EditCard.js';
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -44,16 +45,21 @@ function App() {
         navigate('/catalog');
     };
 
+    const editCard = (gameId, gameData) => {
+        setCards(state => state.map(x => x._id === gameId ? gameData : x));
+    }
+
     return (
         <>
             <AuthContext.Provider value={{ user: auth, storeUserCredentials, clearUserCredentials }}>
                 <Header />
                 <main>
-                    <CardContext.Provider value={{ createCard }}>
+                    <CardContext.Provider value={{ createCard, editCard }}>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/catalog" element={<Catalog cards={cards} />} />
                             <Route path="/catalog/:cardId" element={<Details />} />
+                            <Route path="/catalog/:cardId/edit" element={<EditCard />} />
                             <Route path="/create" element={<CreateCard />} />
 
                             <Route path="/logout" element={<Logout />} />

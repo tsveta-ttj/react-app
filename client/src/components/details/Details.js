@@ -13,12 +13,15 @@ export const Details = () => {
 
     });
 
-
     useEffect(() => {
         cardService.getOne(cardId)
             .then(result => {
+                if (result.message) {
+                    throw new Error(result.message);
+                }
                 setCard(result);
-            });
+            })
+            .catch(err => console.log(err));
     }, [cardId]);
 
     return (
@@ -35,11 +38,14 @@ export const Details = () => {
                 <p>Author: <strong>{card.owner.username}</strong></p>
             </div>
             <div className="details-buttons">
-                <Link to="#" className="button">
+                <Link to={`/catalog/${cardId}/edit`} className="button">
                     Edit
                 </Link>
                 <Link to="#" className="button">
                     Delete
+                </Link>
+                <Link to={'/catalog'} className="button">
+                    Back
                 </Link>
             </div>
         </section>

@@ -48,8 +48,9 @@ export const CreateCard = () => {
                     name="img"
                     id="img"
                 />
-                
+
                 <button type="submit" >Create</button>
+                <button>Back</button>
             </div>
         </form>
     );

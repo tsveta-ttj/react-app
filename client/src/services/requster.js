@@ -36,3 +36,4 @@ const request = async (method, url, data) => {
 }
 export const get = request.bind({}, 'GET')
 export const post = request.bind({}, 'POST');
+export const put = request.bind({}, 'PUT');

@@ -9,14 +9,8 @@ export const getAll = () => {
         });
 
 }
+export const getOne = (gameId) => request.get(`${baseUrl}/${gameId}`);
 
-export const getOne = (cardId) => {
-    return fetch(`${baseUrl}/${cardId}`)
-        .then(res => res.json())
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-};
 
 export const create = (cardData) => request.post(baseUrl, cardData);
 

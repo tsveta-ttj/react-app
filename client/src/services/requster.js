@@ -26,5 +26,5 @@ const request = async (method, url, data) => {
         console.log(error);
     }
 }
-
+export const get = request.bind({}, 'GET')
 export const post = request.bind({}, 'POST');

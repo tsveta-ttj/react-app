@@ -13,7 +13,8 @@ import { Login } from './components/login/Login.js';
 import { Register } from './components/register/register.js';
 import { CreateCard } from './components/createCard/CreateCard.js';
 import { Details } from './components/details/Details.js';
-import {useLocalStorage} from './hook/useLocalStorage'; 
+import { useLocalStorage } from './hook/useLocalStorage';
+import { Logout } from './components/logout/Logout.js';
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -21,8 +22,12 @@ function App() {
 
     const navigate = useNavigate();
 
-    const userRegister = (authData) =>{
+    const userRegister = (authData) => {
         setAuth(authData);
+    };
+
+    const userLogout = () => {
+        setAuth({});
     };
 
     useEffect(() => {
@@ -47,14 +52,14 @@ function App() {
 
     return (
         <>
-            <AuthContext.Provider value={{userRegister}}>
+            <AuthContext.Provider value={{user:auth, userRegister, userLogout}}>
                 <Header />
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/catalog" element={<Catalog cards={cards} />} />
                         <Route path="/catalog/:cardId" element={<Details />} />
-
+                        <Route path="/logout" element={<Logout />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/create" element={<CreateCard onCardCreate={cardCreateHandler} />} />

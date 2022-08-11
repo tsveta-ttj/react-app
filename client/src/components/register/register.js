@@ -29,7 +29,7 @@ export const Register = () => {
                 userRegister(authData);
                 navigate('/')
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err);
             });
     }

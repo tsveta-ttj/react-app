@@ -1,7 +1,8 @@
-const baseUrl = 'http://localhost:3030';
+import * as request from './requster'
+const baseUrl = 'http://localhost:3030/data/catalog';
 
 export const getAll = () => {
-    return fetch(`${baseUrl}/data/catalog`)
+    return fetch(`${baseUrl}/`)
         .then(res => res.json())
         .catch((error) => {
             console.error('Error:', error);
@@ -10,28 +11,12 @@ export const getAll = () => {
 }
 
 export const getOne = (cardId) => {
-    return fetch(`${baseUrl}/data/catalog/${cardId}`)
+    return fetch(`${baseUrl}/${cardId}`)
         .then(res => res.json())
         .catch((error) => {
             console.error('Error:', error);
         });
 };
 
-export const create = async (cardData) => {
-    const response = await fetch(`${baseUrl}/data/catalog`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cardData)
-    });
-
-    if (response.ok) {
-        const result = await response.json();
-        
-        return result;
-    } else {
-        throw { message: 'Unable to create card' };
-    }
-};
+export const create = (cardData) => request.post(baseUrl, cardData);
 

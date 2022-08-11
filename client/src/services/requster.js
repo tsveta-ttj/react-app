@@ -1,6 +1,14 @@
 const request = async (method, url, data) => {
     try {
-        let headers = {}
+        const user = localStorage.getItem('auth');
+        const auth = JSON.parse(user || '{}'); 
+
+        let headers = {};
+
+        if (auth.accessToken) {
+            headers['X-Authorization'] = auth.accessToken;
+        }
+
         let buildRequest;
 
         if (method === 'GET') {

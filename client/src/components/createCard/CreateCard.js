@@ -1,28 +1,24 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { CardContext } from "../../contexts/CardContext";
+import * as cardService from '../../services/cardService';
 
-export const CreateCard = ({
-    onCardCreate,
-}) => {
-
-
-    const [values, setValues] = useState({
-        title: '',
-        img: '',
-        description: '',
-
-    });
-
-    const changeHandler = (e) => {
-        setValues(previousValues => ({
-            ...previousValues,
-            [e.target.name]: e.target.value
-        }));
-    };
+export const CreateCard = () => {
+    const { createCard } = useContext(CardContext);
 
     const submitHandler = (e) => {
         e.preventDefault();
 
-        onCardCreate(values);
+        const cardData = Object.fromEntries(new FormData(e.target));
+        
+        cardService.create(cardData)
+            .then(result => {
+                console.log(result);
+                if (result.message) {
+                    throw new Error(result.message);
+                }
+                createCard(result);
+            })
+            .catch(err => console.log(err));
     };
 
     return (
@@ -36,8 +32,6 @@ export const CreateCard = ({
                     id="title"
                     name="title"
                     placeholder="title"
-                    value={values.title}
-                    onChange={changeHandler}
                 />
 
                 <label htmlFor="description">Description:</label>
@@ -46,8 +40,6 @@ export const CreateCard = ({
                     id="description"
                     name="description"
                     placeholder="description"
-                    value={values.description}
-                    onChange={changeHandler}
                 />
 
                 <label htmlFor="pass">Image:</label>
@@ -55,12 +47,9 @@ export const CreateCard = ({
                     type="img"
                     name="img"
                     id="img"
-                    value={values.img}
-                    onChange={changeHandler}
                 />
-
+                
                 <button type="submit" >Create</button>
-
             </div>
         </form>
     );

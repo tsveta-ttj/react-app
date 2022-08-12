@@ -66,12 +66,12 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/catalog" element={<Catalog cards={cards} />} />
-                            <Route path="/catalog/:cardId" element={<Details />} />
                             
                            
                             <Route element={<PrivateGuard />}>
                             <Route path="/create" element={<CreateCard />} />
                             <Route path="/catalog/:cardId/edit" element={<EditCard />} />
+                            <Route path="/catalog/:cardId" element={<Details />} />
                             <Route path="/logout" element={<Logout />} />
                             </Route>
 

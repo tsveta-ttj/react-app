@@ -4,14 +4,14 @@ Created for educational purposes as a final project for Softuni's ReactJS - June
 
 ## Get Started
 ### Start the Rect app
-In the client directory, you can run:
+In the client directory in your terminal, you can run the following command:
 ```
 > npm run
 ```
 Open http://localhost:3000
 
 ### Start the REST server
-In the server directory, you can run:
+In the server directory in your terminal, you can run the following command:
 ```
 > npm run 
 ```
@@ -33,7 +33,7 @@ The logged-in user navbar contain Welcome, { user’s username } and the links t
 ## Login & Registration User functionality
 The Login page contains a form for existing user authentication. By providing an email and password the app will login a user.
 
-The Registration page contains a form and by given username, email, username, password  the app will register a new user in the system.
+The Registration page contains a form and by given username, email, password  the app will register a new user in the system.
 
 If the Login / Registration was successful:
 - redirect to Catalog page

@@ -18,6 +18,7 @@ import { Details } from './components/details/Details.js';
 import { useLocalStorage } from './hook/useLocalStorage';
 import { Logout } from './components/logout/Logout.js';
 import { EditCard } from './components/editCard/EditCard.js';
+import PrivateGuard from './components/common/guard/PrivateGuard.js';
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -58,7 +59,7 @@ function App() {
 
     return (
         <>
-            <AuthContext.Provider value={{ user: auth, storeUserCredentials, clearUserCredentials }}>
+            <AuthContext.Provider value={{ user: auth, storeUserCredentials, clearUserCredentials, isAuthenticated: !!auth.accessToken}}>
                 <Header />
                 <main>
                     <CardContext.Provider value={{ createCard, editCard, deleteCard }}>
@@ -66,11 +67,15 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/catalog" element={<Catalog cards={cards} />} />
                             <Route path="/catalog/:cardId" element={<Details />} />
-                            <Route path="/catalog/:cardId/edit" element={<EditCard />} />
-
+                            
+                           
+                            <Route element={<PrivateGuard />}>
                             <Route path="/create" element={<CreateCard />} />
-
+                            <Route path="/catalog/:cardId/edit" element={<EditCard />} />
                             <Route path="/logout" element={<Logout />} />
+                            </Route>
+
+
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                         </Routes>

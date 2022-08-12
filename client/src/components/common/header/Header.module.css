@@ -36,3 +36,10 @@
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  .hello{
+    color: var(--clr-yellow);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }

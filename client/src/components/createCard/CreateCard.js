@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CardContext } from "../../contexts/CardContext";
 import * as cardService from '../../services/cardService';
@@ -9,7 +10,7 @@ export const CreateCard = () => {
         e.preventDefault();
 
         const cardData = Object.fromEntries(new FormData(e.target));
-        
+
         cardService.create(cardData)
             .then(result => {
                 console.log(result);
@@ -22,36 +23,46 @@ export const CreateCard = () => {
     };
 
     return (
-        <form id="create" onSubmit={submitHandler}>
-            <div className="form-container">
+        <div className="form-container">
+            <form className="form" id="create" onSubmit={submitHandler}>
                 <h1>Create Card</h1>
 
-                <label htmlFor="title">Title:</label>
+                <label className='label' htmlFor="title">Title:</label>
                 <input
+                    className='inputFields'
                     type="text"
                     id="title"
                     name="title"
-                    placeholder="title"
+                    placeholder="Title"
                 />
 
-                <label htmlFor="description">Description:</label>
+                <label className='label' htmlFor="description">Description:</label>
                 <input
+                    className='inputFields'
                     type="text"
                     id="description"
                     name="description"
-                    placeholder="description"
+                    placeholder="Description"
                 />
 
-                <label htmlFor="pass">Image:</label>
+                <label className='label' htmlFor="pass">Image:</label>
                 <input
+                    className='inputFields'
                     type="img"
                     name="img"
                     id="img"
-                />
+                    placeholder="http://..."
 
-                <button type="submit" >Create</button>
-                <button>Back</button>
-            </div>
-        </form>
+                />
+                <div className="formButtons">
+                    <button className='button' type="submit" >Create</button>
+                    <button className='button' >
+                        <Link to={'/catalog'} className='buttonLink' >
+                            Back
+                        </Link>
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 };

@@ -4,12 +4,12 @@ import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from '../../services/userService';
 
 export const Register = () => {
-    const {storeUserCredentials} = useContext(AuthContext);
+    const { storeUserCredentials } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onLogin = (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(e.target);
 
         const email = formData.get('email');
@@ -17,13 +17,13 @@ export const Register = () => {
         const password = formData.get('password');
         const repass = formData.get('repass');
 
-        if(password !== repass){
+        if (password !== repass) {
             throw new Error('Password and Confirm Password do not match');
         }
 
         userService.register(email, username, password)
             .then(authData => {
-                if(authData.message){
+                if (authData.message) {
                     throw new Error(authData.message);
                 }
                 storeUserCredentials(authData);
@@ -36,44 +36,47 @@ export const Register = () => {
 
     return (
 
-        <form id="register" onSubmit={onLogin}>
-            <div className="form-container">
+        <div className="form-container">
+            <form id="register" className="form" onSubmit={onLogin}>
                 <h1>Register</h1>
-                
-                <label htmlFor="email">Email:</label>
+
+                <label className='label' htmlFor="email">Email:</label>
                 <input
+                    className='inputFields'
                     type="email"
                     id="email"
                     name="email"
                     placeholder="maria@mail.com"
                 />
 
-                <label htmlFor="username">Username:</label>
+                <label className='label' htmlFor="username">Username:</label>
                 <input
+                    className='inputFields'
                     type="text"
                     id="username"
                     name="username"
                     placeholder="Mims"
                 />
 
-                <label htmlFor="pass">Password:</label>
-                <input 
-                    type="password" 
-                    name="password" 
+                <label className='label' htmlFor="pass">Password:</label>
+                <input
+                    className='inputFields'
+                    type="password"
+                    name="password"
                     id="register-password" />
 
-                <label htmlFor="repass">Confirm Password:</label>
-                <input type="password" name="repass" id="repass" />
-                
-                <button type="submit" >Register</button>
+                <label className='label' htmlFor="repass">Confirm Password:</label>
+                <input className='inputFields' type="password" name="repass" id="repass" />
+
+                <button className='button' type="submit" >Register</button>
 
                 <p className="field">
                     <span>
-                        If you already have profile click <Link to="/login">here</Link>
+                        If you already have profile click <Link to="/login" className='accent'>here</Link>
                     </span>
                 </p>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 
 };

@@ -36,14 +36,15 @@ export const EditCard = () => {
             })
             .catch(err => console.log(err));
     };
-    
-    return (
-        <form id="create" onSubmit={onSubmit}>
-            <div className="form-container">
-                <h1>Edit Card</h1>
 
-                <label htmlFor="title">Title:</label>
+    return (
+        <div className="form-container">
+            <form className="form" id="create" onSubmit={onSubmit}>
+                <h1>Edit your post</h1>
+
+                <label className='label' htmlFor="title">Title:</label>
                 <input
+                    className='inputFields'
                     type="text"
                     id="title"
                     name="title"
@@ -51,8 +52,9 @@ export const EditCard = () => {
                     defaultValue={currentCard.title}
                 />
 
-                <label htmlFor="description">Description:</label>
+                <label className='label' htmlFor="description">Description:</label>
                 <input
+                    className='inputFields'
                     type="text"
                     id="description"
                     name="description"
@@ -61,8 +63,9 @@ export const EditCard = () => {
 
                 />
 
-                <label htmlFor="pass">Image:</label>
+                <label className='label' htmlFor="pass">Image:</label>
                 <input
+                    className='inputFields'
                     type="img"
                     name="img"
                     id="img"
@@ -70,13 +73,17 @@ export const EditCard = () => {
 
                 />
 
-                <button type="submit" >Edit</button>
-                <Link to={`/catalog/${cardId}`} className="button">
-                    Back
-                </Link>
+                <div className="formButtons">
+                    <button className='button' type="submit" >Edit</button>
+                    <button className='button' >
+                        <Link to={'/catalog'} className='buttonLink' >
+                            Back
+                        </Link>
+                    </button>
+                </div>
 
-            </div>
-        </form>
+            </form>
+        </div>
 
     );
 }

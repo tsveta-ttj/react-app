@@ -21,7 +21,7 @@ export const Login = () => {
                     throw new Error(authData.message);
                 }
                 storeUserCredentials(authData);
-                navigate('/');
+                navigate('/catalog');
             })
             .catch(err => {
                 console.log(err);
@@ -30,28 +30,27 @@ export const Login = () => {
     };
     return (
 
-        <form id="login" onSubmit={onSubmit}>
-            <div className="form-container">
+        <div className="form-container">
+            <form id="login" className="form" onSubmit={onSubmit}>
                 <h1>Login</h1>
-                <label htmlFor="email">Email:</label>
+                <label className='label' htmlFor="email">Email:</label>
                 <input
+                    className='inputFields'
                     type="email"
                     id="email"
                     name="email"
                     placeholder="maria@gmail.com"
                 />
-                <label htmlFor="login-pass">Password:</label>
-                <input type="password" id="login-password" name="password" />
-                <button type="submit" >Login</button>
+                <label className='label' htmlFor="login-pass">Password:</label>
+                <input className='inputFields' type="password" id="login-password" name="password" />
+                <button className='button' type="submit" >Login</button>
                 <p className="field">
                     <span>
-                        If you don't have profile click <Link to="/register">here</Link>
+                        If you don't have profile click <Link className='accent' to="/register">here</Link>
                     </span>
                 </p>
-
-
-            </div>
-        </form>
+            </form>
+        </div>
 
     );
 

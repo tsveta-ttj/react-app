@@ -82,8 +82,13 @@ select {
 html {
   padding: 2rem;
   font-family: 'Roboto', sans-serif;
-  background-color: var(--clr-light-grey);
+  background-color: var(--clr-white);
   box-sizing: border-box;
+}
+body {
+  width: 90vw;
+  background-color: var(--clr-light-grey);
+  
 }
 
 /* Card list */

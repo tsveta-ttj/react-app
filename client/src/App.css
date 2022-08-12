@@ -107,6 +107,12 @@ body {
   gap: 15px;
 }
 
+.no-cards{
+  font-size: 1.1rem;
+  font-weight: lighter;
+  color: var(--clr-dark-sienna);
+}
+
 /* Card component */
 
 .card{

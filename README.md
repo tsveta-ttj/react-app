@@ -11,7 +11,7 @@ In the client directory, you can run:
 Open http://localhost:3000
 
 ### Start the REST server
-In the client directory, you can run:
+In the server directory, you can run:
 ```
 > npm run 
 ```

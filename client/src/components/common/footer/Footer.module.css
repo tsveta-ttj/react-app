@@ -2,20 +2,22 @@
     background-color: var(--clr-dark-sienna);
     max-width: 100%;
     width: 100%;
-    height: 70px;
+    height: 80px;
     border-radius: 8px;
 }
 
 .footer p {
     color: var(--clr-light-grey);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
+    padding-top: 10px;
 }
 
-.footer p:last-child {
-    
+.footer p:last-child {    
     font-size: 0.9rem;
+    text-align: right;
+    margin-right: 1rem;
 }
 

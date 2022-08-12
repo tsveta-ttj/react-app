@@ -4,8 +4,9 @@ export const Catalog = ({
     cards
 }) => {
     return (
-        <section id="catalog">
-            <h1>All Posts</h1>
+        <div className="catalog">
+        <section id="catalog" className="catalog">
+            <h1 className="catalogH1">All Posts</h1>
             <div className="cards">
                 {cards.length > 0
                     ? cards.map(card => <CatalogItem key={card._id} card={card} />)
@@ -13,5 +14,6 @@ export const Catalog = ({
                 }
             </div>
         </section>
+        </div>
     );
 } 

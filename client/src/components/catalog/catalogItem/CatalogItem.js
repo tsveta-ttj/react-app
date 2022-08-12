@@ -14,8 +14,7 @@ export const CatalogItem = ({
                 <Link to={`/catalog/${card._id}`}>
                     <button className="button" type="button">Continue reading</button>
                 </Link>
-            {/* <button className="button" type="button">Edit</button>
-                <button className="button" type="button">Delete</button> */}
+
         </footer>
         </article >
     );

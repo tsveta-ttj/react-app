@@ -92,6 +92,12 @@ body {
 }
 
 /* Card list */
+.catalogH1{
+  text-align: center;
+  color: var(--clr-rosewood);
+  
+}
+
 .cards{
   height: 1600px;
 
@@ -136,6 +142,7 @@ body {
 .desription {
   text-align: justify;
   font-size: 1.1rem;
+  font-weight: lighter;
   color: var(--clr-dark-sienna);
   overflow: hidden;
   white-space: nowrap;

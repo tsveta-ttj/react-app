@@ -27,7 +27,7 @@ export const Register = () => {
                     throw new Error(authData.message);
                 }
                 storeUserCredentials(authData);
-                navigate('/')
+                navigate('/catalog')
             })
             .catch(err => {
                 console.log(err);

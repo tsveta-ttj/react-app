@@ -2,12 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as cardService from '../../services/cardService';
 import { CardContext } from "../../contexts/CardContext";
+import styles from '../details/Details.module.css';
 
 export const Details = () => {
     const { deleteCard } = useContext(CardContext);
 
     const { cardId } = useParams();
-    const navigate = useNavigate();
 
     const [card, setCard] = useState({
         title: '',
@@ -36,7 +36,7 @@ export const Details = () => {
                 .then(res => {
                     console.log('res from del', res);
                     if (res === undefined) {
-                        
+
                         deleteCard(cardId);
                     } else {
                         throw new Error(res.message);
@@ -49,29 +49,40 @@ export const Details = () => {
     }
 
     return (
-        <section id="details">
-            <h1>Details page</h1>
-            <div className="image-container">
-                <img src={card.img} alt={`${card.title}'s img`}
-                    className="image" />
-            </div>
+        <div className={styles.details}>
+            <section id="details" className={styles.detailsSection}>
+            <h1 className={styles.postTitle}>Details for {card.title} post by {card.owner.username} </h1>
+                <div className={styles.imageContainer}>
+                    <img src={card.img} alt={`${card.title}'s img`}
+                        className={styles.img} />
+                </div>
 
-            <div className="card-details">
-                <p>Blog title: <strong>{card.title}</strong></p>
-                <p>Description: <strong>{card.description}</strong></p>
-                <p>Author: <strong>{card.owner.username}</strong></p>
-            </div>
-            <div className="details-buttons">
-                <Link to={`/catalog/${cardId}/edit`} className="button">
-                    Edit
-                </Link>
-                <button className="button" onClick={onDelete}>
-                    Delete
-                </button>
-                <Link to={'/catalog'} className="button" >
-                    Back
-                </Link>
-            </div>
-        </section>
+                <div className={styles.cardDetails}>
+
+                    <p className={styles.description}>{card.description}</p>
+                    <p className={styles.description}><span className={styles.accent}>By: </span> {card.owner.username}</p>
+
+                </div>
+
+                <div className={styles.detailsButtons}>
+                    <button className={styles.detailsButton} >
+                        <Link to={`/catalog/${cardId}/edit`} className={styles.detailsButton}>
+                            Edit
+                        </Link>
+                    </button>
+
+                    <button className={styles.detailsButton} onClick={onDelete}>
+                        <Link to={"#"} className={styles.detailsButton}>Delete</Link>
+                    </button>
+
+                    <button className={styles.detailsButton} >
+                        <Link to={'/catalog'} className={styles.detailsButton} >
+                            Back
+                        </Link>
+                    </button>
+                </div>
+                
+            </section>
+        </div>
     );
 };

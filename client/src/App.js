@@ -19,6 +19,7 @@ import { useLocalStorage } from './hook/useLocalStorage';
 import { Logout } from './components/logout/Logout.js';
 import { EditCard } from './components/editCard/EditCard.js';
 import PrivateGuard from './components/common/guard/PrivateGuard.js';
+import NotFound from './components/NotFound/NotFound.js';
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -75,9 +76,9 @@ function App() {
                             <Route path="/logout" element={<Logout />} />
                             </Route>
 
-
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </CardContext.Provider>
                 </main>

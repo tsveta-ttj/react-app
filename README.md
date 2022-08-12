@@ -82,4 +82,7 @@ After clicking the edit button - redirect the user to the Details page of the po
 Available to logged-in users, for posts they have created. When the author clicks on the Delete action on any of their post, a confirmation dialog will be displayed, and upon confirming this dialog, the post will be deleted from the system.
 Upon success, redirect the user to the Catalog page
 
+
+## NotFound page
+If user (guest or lodded) attempts to access a URL that does not exist, Not Found page is shown. The page contains message with go-to-home button which will redirect to Home page
  

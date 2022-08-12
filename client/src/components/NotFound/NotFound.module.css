@@ -1,0 +1,19 @@
+.text {
+    font-weight: lighter;
+    text-align: center;
+    font-size: 50px;
+    color: var(--clr-rosewood);
+    letter-spacing: 2px;
+}
+
+.text2{
+    font-weight: lighter;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.accent{
+    color: var(--clr-rufous);
+  font-weight: bold;
+  text-decoration: none;
+}

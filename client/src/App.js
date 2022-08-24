@@ -24,6 +24,8 @@ import NotFound from './components/NotFound/NotFound.js';
 function App() {
     const [cards, setCards] = useState([]);
     const [auth, setAuth] = useLocalStorage('auth', {});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [cardsPerPage] = useState(6);
 
     useEffect(() => {
         cardService.getAll()
@@ -31,8 +33,18 @@ function App() {
                 setCards(result)
             });
     }, []);
-
+    
     const navigate = useNavigate();
+
+    // Get current cards
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+
+    //Change page
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
     const storeUserCredentials = (authData) => {
         setAuth(authData);
@@ -41,7 +53,6 @@ function App() {
     const clearUserCredentials = () => {
         setAuth({});
     };
-
 
     const createCard = (newCard) => {
         setCards(oldCards => [...oldCards, newCard]);
@@ -63,10 +74,10 @@ function App() {
             <AuthContext.Provider value={{ user: auth, storeUserCredentials, clearUserCredentials, isAuthenticated: !!auth.accessToken}}>
                 <Header />
                 <main>
-                    <CardContext.Provider value={{ createCard, editCard, deleteCard }}>
+                    <CardContext.Provider value={{ createCard, editCard, deleteCard, cardsPerPage, totalCards: cards.length, paginate }}>
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/catalog" element={<Catalog cards={cards} />} />
+                            <Route path="/catalog" element={<Catalog cards={currentCards} />} />
                             
                            
                             <Route element={<PrivateGuard />}>

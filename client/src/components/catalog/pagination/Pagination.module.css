@@ -1,0 +1,22 @@
+.pagination{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 5px;
+}
+
+.page-item{
+}
+
+.page-link{
+    text-decoration: none;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+
+    
+
+}

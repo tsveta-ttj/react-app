@@ -1,4 +1,5 @@
 import { CatalogItem } from "./catalogItem/CatalogItem";
+import { Pagination } from "./pagination/Pagination";
 
 export const Catalog = ({
     cards
@@ -14,6 +15,8 @@ export const Catalog = ({
                 }
             </div>
         </section>
+        <Pagination />
         </div>
+
     );
 } 
